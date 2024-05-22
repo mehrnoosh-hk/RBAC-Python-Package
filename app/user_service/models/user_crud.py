@@ -1,6 +1,6 @@
 from typing import Type
 
-from sqlmodel import Session
+from sqlmodel import Session, select
 
 from app.user_service.schemas.user_schemas import UserCreate
 from app.user_service.models.user_model import User
@@ -24,5 +24,6 @@ def get_user_by_id(session: Session, user_id: int) -> Type[User] | None:
 
 
 def get_all_users(session) -> list[Type[User]]:
-    users = session.query(User).all()
+    statement = select(User)
+    users = session.exec(statement).all()
     return users
