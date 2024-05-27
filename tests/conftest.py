@@ -1,33 +1,44 @@
 import pytest
 from fastapi.testclient import TestClient
 from sqlmodel import SQLModel, Session, create_engine
-
 from app.core.database import get_session
 from app.main import password_manager
 
 
-DATABASE_URL = "sqlite:///testing.db"
-engine = create_engine(DATABASE_URL, echo=True, connect_args={"check_same_thread": False})
+@pytest.fixture(scope="session")
+def database_url():
+    return "sqlite:///testing.db"
 
 
-def override_get_session() -> Session:
-    with Session(engine) as session:
-        yield session
-
-
-password_manager.dependency_overrides[get_session] = override_get_session
+@pytest.fixture(scope="session")
+def engine(database_url):
+    return create_engine(database_url, echo=True, connect_args={"check_same_thread": False})
 
 
 @pytest.fixture(scope="session", autouse=True)
-def setup_database():
+def setup_database(engine, request):
     SQLModel.metadata.create_all(engine)
-    yield
-    SQLModel.metadata.drop_all(engine)
+
+    def teardown():
+        SQLModel.metadata.drop_all(engine)
+
+    request.addfinalizer(teardown)
 
 
 @pytest.fixture
-def client():
-    return TestClient(password_manager)
+def override_get_session(engine):
+    def _override_get_session() -> Session:
+        with Session(engine) as session:
+            yield session
+
+    return _override_get_session
+
+
+@pytest.fixture
+def client(override_get_session):
+    password_manager.dependency_overrides[get_session] = override_get_session
+    with TestClient(password_manager) as client:
+        yield client
 
 
 @pytest.fixture

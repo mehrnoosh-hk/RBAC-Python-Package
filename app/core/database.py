@@ -13,4 +13,5 @@ def get_session():
 
 
 def create_db_and_tables():
+    print("Creating database and tables")
     SQLModel.metadata.create_all(engine)
