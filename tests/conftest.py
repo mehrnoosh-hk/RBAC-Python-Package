@@ -42,7 +42,7 @@ def client(override_get_session):
 
 
 @pytest.fixture
-def session(engine):
+def session():
     with Session(engine) as session:
         yield session
         session.rollback()
