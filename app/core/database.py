@@ -1,10 +1,9 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, Session
 
-DATABASE_URL = "postgresql://your_user:your_password@localhost/your_db"
+from app.core.config import settings
 
-
-engine = create_engine(DATABASE_URL)
+engine = create_engine(settings.database_url)
 
 
 class Base(DeclarativeBase):
