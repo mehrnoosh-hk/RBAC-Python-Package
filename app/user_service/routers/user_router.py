@@ -22,14 +22,12 @@ async def create_user(user: UserCreate, session: Session = Depends(get_session))
 
 @user_router.get("/")
 async def get_all_users(session: Session = Depends(get_session)):
-    users = user_crud.get_all_users(session=session)
-    return users
+    return user_crud.get_all_users(session=session)
 
 
 @user_router.get("/{user_id}")
 async def get_user_by_id(user_id: int, session: Session = Depends(get_session)):
-    user = user_crud.get_user_by_id(
+    return user_crud.get_user_by_id(
         session=session,
         user_id=user_id
     )
-    return user

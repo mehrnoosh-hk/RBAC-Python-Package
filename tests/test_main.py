@@ -1,8 +1,8 @@
-from app.main import password_manager
+from app.main import resource_manager
 from fastapi.testclient import TestClient
 
 
-client = TestClient(password_manager)
+client = TestClient(resource_manager)
 
 
 def test_read_root():
