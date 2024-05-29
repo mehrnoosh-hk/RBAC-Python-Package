@@ -1,9 +1,10 @@
 from typing import Type
-
-from sqlmodel import Session, select
+from sqlalchemy import select
+from sqlalchemy.orm import Session
 
 from app.user_service.schemas.user_schemas import UserCreate
 from app.user_service.models.user_model import User
+from app.user_service.schemas.user_schemas import User as PydanticUser
 
 
 def create_user(session: Session, user: UserCreate) -> User:
@@ -23,7 +24,6 @@ def get_user_by_id(session: Session, user_id: int) -> Type[User] | None:
     return user
 
 
-def get_all_users(session) -> list[Type[User]]:
+def get_all_users(session) -> list[PydanticUser]:
     statement = select(User)
-    users = session.exec(statement).all()
-    return users
+    return [PydanticUser.from_orm(user) for user in session.scalars(statement).all()]

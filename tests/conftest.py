@@ -1,8 +1,9 @@
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import SQLModel, Session, create_engine
-from app.core.database import get_session
-from app.main import password_manager
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from app.core.database import get_session, Base
+from app.main import resource_manager
 
 
 @pytest.fixture(scope="session")
@@ -17,10 +18,10 @@ def engine(database_url):
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_database(engine, request):
-    SQLModel.metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
     def teardown():
-        SQLModel.metadata.drop_all(engine)
+        Base.metadata.drop_all(engine)
 
     request.addfinalizer(teardown)
 
@@ -36,8 +37,8 @@ def override_get_session(engine):
 
 @pytest.fixture
 def client(override_get_session):
-    password_manager.dependency_overrides[get_session] = override_get_session
-    with TestClient(password_manager) as client:
+    resource_manager.dependency_overrides[get_session] = override_get_session
+    with TestClient(resource_manager) as client:
         yield client
 
 

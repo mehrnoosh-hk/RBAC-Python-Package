@@ -1,8 +1,12 @@
-from sqlmodel import Field, SQLModel
+from sqlalchemy.orm import Mapped, mapped_column
+from app.core.database import Base
 
 
-class User(SQLModel, table=True):
-    id: int = Field(primary_key=True)
-    email: str
-    username: str
-    password: str
+class User(Base):
+
+    __tablename__ = "users"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str]
+    username: Mapped[str]
+    password: Mapped[str]
