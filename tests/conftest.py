@@ -1,7 +1,8 @@
 import pytest
 from fastapi.testclient import TestClient
-from sqlmodel import SQLModel, Session, create_engine
-from app.core.database import get_session
+from sqlalchemy import create_engine
+from sqlalchemy.orm import Session
+from app.core.database import get_session, Base
 from app.main import resource_manager
 
 
@@ -17,10 +18,10 @@ def engine(database_url):
 
 @pytest.fixture(scope="session", autouse=True)
 def setup_database(engine, request):
-    SQLModel.metadata.create_all(engine)
+    Base.metadata.create_all(engine)
 
     def teardown():
-        SQLModel.metadata.drop_all(engine)
+        Base.metadata.drop_all(engine)
 
     request.addfinalizer(teardown)
 
