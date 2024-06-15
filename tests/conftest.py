@@ -3,7 +3,7 @@ from fastapi.testclient import TestClient
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session
 from app.core.database import get_session, Base
-from app.main import resource_manager
+from main import resource_manager
 
 
 @pytest.fixture(scope="session")
