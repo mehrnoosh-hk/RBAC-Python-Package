@@ -32,9 +32,29 @@ Authentication and Authorization
 
 Step-by-step instructions to install the project.
 
-## Usage
+## Run Locally
 
-How to use the project.
+- Clone the project.
+
+- Go to the project directory
+
+- Create a virtual environemt and install dependencies using requirements.txt file and virtual environemt manager of your choice (You can use venv). Creating a virtual environment is not mandantory but it is best practice.
+
+- Create a copy of .env.example file and fill it with proper environmaental variables.
+
+- From the root of cloned repositry run:
+
+    ```bash
+    docker-compose up -d
+    ```
+    ```bash
+    alembic upgrade head
+    ```
+
+    ```bash
+    fastapi dev main.py
+    ```
+
 
 ## Technologies Used
 

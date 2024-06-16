@@ -1,4 +1,4 @@
-from app.main import resource_manager
+from main import resource_manager
 from fastapi.testclient import TestClient
 
 
