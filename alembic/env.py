@@ -7,7 +7,7 @@ from alembic import context
 
 from app.core.database import Base
 from app.user_service.models.user_model import User  # Ensure this import
-
+from app.role_service.models.role_model import Role  # Ensure this import
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
