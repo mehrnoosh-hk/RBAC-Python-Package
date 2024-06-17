@@ -16,7 +16,7 @@ def engine(database_url) -> Engine:
     return create_engine(database_url, echo=True, connect_args={"check_same_thread": False})
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="function", autouse=True)
 def setup_database(engine, request) -> None:
     Base.metadata.create_all(engine)
 
