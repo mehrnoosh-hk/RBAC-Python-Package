@@ -1,6 +1,9 @@
 # Resource Sharing and Management
 ## Overview
-This is a framework for applying Resource Sharing and Management, implementing idiomatic Python practices.
+This is a Python package for easily applying **Role Based Access Control** for Resource Sharing and Management, implementing idiomatic Python practices.
+
+Role-based access control (RBAC) refers to the idea of assigning permissions to users based on their role within an organization. It offers a simple, manageable approach to access management that is less prone to error than assigning permissions to users individually.
+
 In many B2B and B2C apps, users can create resources and share them with other users giving them different levels of access.
 The purpose of this project is to provide a framework for implementing resource sharing and management in a scalable and secure way.
 
