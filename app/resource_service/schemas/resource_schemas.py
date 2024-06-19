@@ -6,6 +6,10 @@ class ResourceBase(BaseModel):
     description: str
 
 
+class ResourceCreate(ResourceBase):
+    ...
+
+
 class Resource(ResourceBase):
     id: int
 
