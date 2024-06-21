@@ -30,6 +30,30 @@ Authentication and Authorization
 - SSO Integration
 - User Management
 
+- ### Role Hierarchies
+
+    Supports role hierarchies where roles can inherit permissions from other roles. This simplifies management and make the system more **flexible**. 
+
+- ### Dynamic and Static Permissions
+
+    Supports both ststic (predefined) and dynamic (run-time) defined permissons
+
+- ### Context-Aware Permissions
+
+    Supports permission being evaluated in context at run-time based on access-time and access-location.
+
+- ### Auditing and Logging
+
+    Implements logging for access requests, permissions granted and changes to roles and permissions. This is crusial for security audits and usage tracking.
+
+- ### Granular Control
+
+    Allow for fine-grained control over permissions, down to specific actions on specific resources.
+
+- ### APIs for Management
+
+    Secure and fully documented API for managing users, roles, permissons and resources
+
 
 ## Installation
 
