@@ -26,6 +26,6 @@ def create_resource(
         )
 
 
-@resource_router.get("/", status_code=status.HTTP_200_OK)
+@resource_router.get("/", status_code=status.HTTP_200_OK, response_model=list[Resource])
 def get_all_resources(session: Session = Depends(get_session)):
     return db_get_all_resources(session)

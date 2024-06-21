@@ -1,4 +1,3 @@
-from typing import Type
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -19,11 +18,10 @@ def create_user(session: Session, user: UserCreate) -> User:
     return db_user
 
 
-def get_user_by_id(session: Session, user_id: int) -> Type[User] | None:
-    user = session.get(User, user_id)
-    return user
+def get_user_by_id(session: Session, user_id: int) -> User | None:
+    return session.get(User, user_id)
 
 
 def get_all_users(session) -> list[PydanticUser]:
     statement = select(User)
-    return [PydanticUser.from_orm(user) for user in session.scalars(statement).all()]
+    return [PydanticUser.model_validate(user) for user in session.scalars(statement).all()]
