@@ -39,4 +39,4 @@ def test_get_all_roles(client: TestClient, add_roles):
     add_roles()
     response = client.get("/roles/")
     assert response.status_code == 200
-    assert len(response.json()["roles"]) == 3
+    assert len(response.json()) == 3
