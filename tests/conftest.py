@@ -82,7 +82,7 @@ def add_roles(client: TestClient) -> Callable:
 @pytest.fixture
 def add_resource(client: TestClient) -> Callable:
     def _add_resource() -> None:
-        resource = {"name": "Resource 1", "description": "A resource."}
+        resource = {"name": "Resource test 1", "description": "A resource."}
         client.post("/resources/", json=resource)
     
     return _add_resource

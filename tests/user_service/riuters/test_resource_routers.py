@@ -16,7 +16,7 @@ def test_can_not_create_same_resource_twice(client: TestClient, add_resource):
     add_resource()
     response = client.post(
         "/resources",
-        json={"name": "Resource 1", "description": "A resource."}
+        json={"name": "Resource test 1", "description": "A resource."}
     )
 
     assert response.status_code == 406
