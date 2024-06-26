@@ -31,9 +31,9 @@ jobs:
         pip install -r requirements.txt
         pip install pytest-cov
 
-    - name: Test with pytest
+    - name: Test with pytest and collect coverage
       run: |
-        pytest --cov=app --cov-report=term-missing --cov-report=xml
+        pytest --cov app ${{ env.CODECOV_ATS_TESTS }}
 
     - name: Upload coverage report
       uses: actions/upload-artifact@v2
