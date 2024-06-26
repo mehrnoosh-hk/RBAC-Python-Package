@@ -100,3 +100,17 @@ def add_resources(client: TestClient) -> Callable:
             client.post("/resources/", json=resource)
 
     return _add_resource
+
+
+@pytest.fixture
+def add_permission(client: TestClient) -> Callable:
+    def _add_permission():
+        permission = {
+            "name": "Permission to duplicate",
+            "description": "A permission"
+        }
+        client.post(
+            url="/permissions",
+            json=permission
+        )
+    return _add_permission
