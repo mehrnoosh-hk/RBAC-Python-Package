@@ -1,4 +1,4 @@
-# Idiomic Python Role-Based Access Control Package
+# Ready to use and customizable Role-Based Access Control Management Python package optimized for FastAPI
 
 [![codecov](https://codecov.io/gh/mehrnoosh-hk/RBAC-Python-Package/graph/badge.svg?token=9W1GJHROZQ)](https://codecov.io/gh/mehrnoosh-hk/RBAC-Python-Package)
 
