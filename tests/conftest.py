@@ -57,9 +57,7 @@ def add_user(client: TestClient) -> Callable:
 
 @pytest.fixture
 def add_role(client: TestClient) -> Callable:
-    role_data = {"name": "admin", "description": "admin role"}
-
-    def _add_role():
+    def _add_role(role_data: dict):
         client.post("/roles/", json=role_data)
 
     return _add_role
@@ -81,8 +79,7 @@ def add_roles(client: TestClient) -> Callable:
 
 @pytest.fixture
 def add_resource(client: TestClient) -> Callable:
-    def _add_resource() -> None:
-        resource = {"name": "Resource test 1", "description": "A resource."}
+    def _add_resource(resource: dict) -> None:
         client.post("/resources/", json=resource)
     
     return _add_resource
@@ -90,16 +87,11 @@ def add_resource(client: TestClient) -> Callable:
 
 @pytest.fixture
 def add_resources(client: TestClient) -> Callable:
-    def _add_resource():
-        resources = [
-            {"name": "Resource 1", "description": "A resource."},
-            {"name": "Resource 2", "description": "Another resource."},
-            {"name": "Resource 3", "description": "Yet another resource."},
-        ]
+    def _add_resources(resources: list[dict]):
         for resource in resources:
             client.post("/resources/", json=resource)
 
-    return _add_resource
+    return _add_resources
 
 
 @pytest.fixture

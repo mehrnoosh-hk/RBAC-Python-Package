@@ -40,3 +40,12 @@ def test_get_all_roles(client: TestClient, add_roles):
     response = client.get("/roles/")
     assert response.status_code == 200
     assert len(response.json()) == 3
+
+
+def test_get_role_by_id(client: TestClient, add_role):
+    add_role({"name": "my_admin", "description": "admin role"})
+
+    response = client.get(url="/roles/1")
+
+    assert response.status_code == 200
+    assert response.json()["name"] == "my_admin"

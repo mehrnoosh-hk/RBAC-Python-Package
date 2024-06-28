@@ -26,6 +26,6 @@ def get_all_roles(session: Session = Depends(get_session)) -> list:
     return role_crud.get_all_roles(session=session)
 
 
-@role_router.post("/{user_id}")
-def assign_role_to_user(user_id: int, role_id: int) -> dict:
-    return {"role_id": role_id}
+@role_router.get("/{role_id}", response_model=Role)
+def get_role_by_id(role_id: int, session: Session = Depends(get_session)) -> Role:
+    return role_crud.db_get_role_by_id(session, role_id)
