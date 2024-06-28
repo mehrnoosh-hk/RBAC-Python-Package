@@ -1,8 +1,9 @@
 import logging
-from app.core.logger import logger
+from app.core.logger import get_logger
 
 
 def test_logger():
+    logger = get_logger()
     assert isinstance(logger, logging.Logger)
     logger.debug(logger.level)
     assert logger.level == logging.DEBUG
