@@ -1,4 +1,8 @@
 # Idiomic Python Role-Based Access Control Package
+
+[![codecov](https://codecov.io/gh/mehrnoosh-hk/RBAC-Python-Package/graph/badge.svg?token=9W1GJHROZQ)](https://codecov.io/gh/mehrnoosh-hk/RBAC-Python-Package)
+
+
 Overview
 
 This Python package facilitates the implementation of Role-Based Access Control (RBAC) for resource sharing and management, following idiomatic Python practices.
