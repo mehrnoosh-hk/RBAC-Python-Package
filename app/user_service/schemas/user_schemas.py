@@ -17,7 +17,7 @@ class User(UserBase):
     enabled: bool | None
     created_at: datetime.datetime | None
     updated_at: datetime.datetime | None
-    deleted: bool = False
+    deleted: bool | None
     deleted_at: datetime.datetime | None
 
     class Config:

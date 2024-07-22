@@ -13,7 +13,7 @@ class User(Base):
     email: Mapped[str] = mapped_column(String, unique=True)
     username: Mapped[str]
     password: Mapped[str]
-    enabled: Mapped[bool] = mapped_column(Boolean, nullable=True)
+    enabled: Mapped[bool] = mapped_column(Boolean, default=True, nullable=True)
     created_at: Mapped[datetime.datetime] = mapped_column(
         TIMESTAMP(timezone=True), default=datetime.datetime.now, nullable=True
     )
