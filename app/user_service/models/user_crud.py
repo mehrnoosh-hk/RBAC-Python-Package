@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session
 from app.user_service.schemas.user_schemas import UserCreate
 from app.user_service.models.user_model import User
 from app.user_service.schemas.user_schemas import User as PydanticUser
+from app.auth_service.security import get_password_hash
 
 
 def create_user(session: Session, user: UserCreate) -> User:
@@ -15,7 +16,7 @@ def create_user(session: Session, user: UserCreate) -> User:
     db_user: User = User(
         email=user.email,
         username=user.username,
-        password=user.password,
+        password=get_password_hash(user.password),
         enabled=user.enabled
     )
     session.add(db_user)
