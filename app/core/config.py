@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     pythonpath: str = "/app"
 
     class Config:
-        env_file = ".env"
+        env_file = ".environment"
 
 
 settings = Settings()

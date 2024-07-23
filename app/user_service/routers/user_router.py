@@ -1,4 +1,5 @@
 from fastapi import APIRouter, status, Depends
+from fastapi.responses import JSONResponse
 
 from sqlmodel import Session
 
@@ -14,10 +15,16 @@ user_router = APIRouter(
 
 @user_router.post("/", status_code=status.HTTP_201_CREATED)
 async def create_user(user: UserCreate, session: Session = Depends(get_session)):
-    user_crud.create_user(
-        session=session,
-        user=user)
-    return {"username": user.username}
+    try:
+        user_crud.create_user(
+            session=session,
+            user=user)
+        return {"username": user.username}
+    except ValueError:
+        return JSONResponse(
+            content={"error": "A user with this email already exists"},
+            status_code=status.HTTP_406_NOT_ACCEPTABLE
+        )
 
 
 @user_router.get("/")
